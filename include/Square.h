@@ -8,12 +8,31 @@
 #include "Piece.h"
 #include "Board.h"
 
+#include "Position.h"
 
 class Square {
 public:
-    Piece* piece;
+    Square(Position, Board *, Piece * = nullptr);
+
+    Position getPosition() {
+
+    }
+
+    Board *getBoard() {
+
+    }
+
+    bool setPiece(Piece &) {
+
+    }
+
+    Piece *getPiece() {
+
+    }
+
 private:
-    Board& board;
+    Piece* piece;
+    Board *board;
     Position pos;
 };
 

@@ -5,9 +5,11 @@
 #ifndef CHESS_ENEMY_H
 #define CHESS_ENEMY_H
 
+#include "Player.h"
 
-class Enemy {
-
+class Enemy : public Player {
+public:
+    Enemy(Color, std::string);
 };
 
 

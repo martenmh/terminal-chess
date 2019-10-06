@@ -3,3 +3,7 @@
 //
 
 #include "Square.h"
+
+Square::Square(Position pos, Board *b, Piece *p) : pos{pos}, board{b}, piece{p} {
+
+}

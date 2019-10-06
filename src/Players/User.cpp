@@ -3,3 +3,9 @@
 //
 
 #include "Players/User.h"
+
+User::User(Color c, std::string n) : Player(c, std::move(n)) {
+
+}
+
+

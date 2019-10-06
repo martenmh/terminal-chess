@@ -20,9 +20,9 @@ public:
     void prev();
 
 private:
-    Board& board;
-    Enemy& enemy;
-    User& user;
+    Board board;
+    Enemy enemy;
+    User user;
 };
 
 

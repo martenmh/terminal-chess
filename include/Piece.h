@@ -5,25 +5,30 @@
 #ifndef CHESS_PIECE_H
 #define CHESS_PIECE_H
 
-#include "Player.h"
 
-enum Type{
-    Pawn,
-    Rook,
-    Knight,
-    Bishop,
-    Queen,
-    King
-};
+#include "Types.h"
+#include "Color.h"
+#include "Position.h"
+
+class Player;
 
 class Piece {
 public:
-    Piece(Color, Type);
+    Piece(int, Color, Type, Player *, Position = {static_cast<HorizontalPosition>(0), 0});
     Color getColor();
     Type getType();
+
+    Position getPosition();
+
+    int getIndex();
+
+    Player *getPlayer();
 protected:
+    Player *player;
+    Position pos;
     Color color;
     Type pieceType;
+    int index;
 };
 
 

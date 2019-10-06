@@ -5,9 +5,12 @@
 #ifndef CHESS_USER_H
 #define CHESS_USER_H
 
+#include "Player.h"
 
-class User {
-
+//explicit Player(Color, std::string);
+class User : public Player {
+public:
+    User(Color, std::string);
 };
 
 

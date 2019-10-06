@@ -3,3 +3,7 @@
 //
 
 #include "Players/Enemy.h"
+
+Enemy::Enemy(Color c, std::string n) : Player(c, n) {
+
+}
