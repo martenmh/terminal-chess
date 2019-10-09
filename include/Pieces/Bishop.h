@@ -7,7 +7,10 @@
 #include "Piece.h"
 
 class Bishop : public Piece {
+public:
+    Bishop(int, Color, Type, Player *, Position = {static_cast<HorizontalPosition>(0), 0});
 
+    ~Bishop();
 };
 
 

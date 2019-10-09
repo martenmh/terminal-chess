@@ -27,3 +27,7 @@ Player *Piece::getPlayer() {
 int Piece::getIndex() {
     return index;
 }
+
+Piece::~Piece() {
+
+}

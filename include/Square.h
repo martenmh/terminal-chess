@@ -14,21 +14,13 @@ class Square {
 public:
     Square(Position, Board *, Piece * = nullptr);
 
-    Position getPosition() {
+    Position getPosition();
 
-    }
+    Board *getBoard();
 
-    Board *getBoard() {
+    bool setPiece(Piece &);
 
-    }
-
-    bool setPiece(Piece &) {
-
-    }
-
-    Piece *getPiece() {
-
-    }
+    Piece *getPiece();
 
 private:
     Piece* piece;

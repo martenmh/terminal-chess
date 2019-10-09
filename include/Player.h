@@ -8,28 +8,18 @@
 #include <string>
 #include <vector>
 
-class Pawn;
-
-class Bishop;
-
-class Knight;
-
-class Rook;
-
-class Queen;
-
-class King;
-//#include "Rook.h"
-//#include "Bishop.h"
-//#include "King.h"
-//#include "Knight.h"
-//#include "Pawn.h"
-//#include "Queen.h"
+#include "Piece.h"
+#include "Rook.h"
+#include "Bishop.h"
+#include "King.h"
+#include "Knight.h"
+#include "Pawn.h"
+#include "Queen.h"
 
 #include "Color.h"
 #include <queue>
 
-class Piece;
+
 
 class Player {
 public:
@@ -52,17 +42,27 @@ private:
     bool indexOutOfRange(int);
     Color color;
     std::string name;
-    //6:
-    std::vector<Pawn *> pawns;
-    //2:
-    std::vector<Bishop *> bishops;
-    std::vector<Knight *> knights;
-    std::vector<Rook *> rooks;
+//    //6:
+//    std::vector<std::shared_ptr<Pawn>> pawns;
+//    //2:
+//    std::vector<std::shared_ptr<Bishop>> bishops;
+//    std::vector<std::shared_ptr<Knight>> knights;
+//    std::vector<std::shared_ptr<Rook>> rooks;
+//
+//    //1:
+//    std::shared_ptr<Queen> queen;
+//    std::shared_ptr<King> king;
+//    std::queue<std::shared_ptr<Piece>> capturedPieces;
+// Chess notation names
+    std::vector<Pawn *> P;
+    std::vector<Bishop *> B;
+    std::vector<Knight *> N;
+    std::vector<Rook *> R;
+    Queen *Q;
+    King *K;
 
-    //1:
-    Queen *queen;
-    King *king;
-    std::queue<Piece *> capturedPieces;
+
+
 
 };
 

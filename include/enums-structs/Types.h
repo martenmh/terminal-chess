@@ -6,12 +6,12 @@
 #define CHESS_TYPES_H
 
 enum Type {
-    Pawn,
-    Rook,
-    Knight,
-    Bishop,
-    Queen,
-    King
+    pawn,
+    rook,
+    knight,
+    bishop,
+    queen,
+    king
 };
 
 #endif //CHESS_TYPES_H

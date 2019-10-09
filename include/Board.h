@@ -6,6 +6,7 @@
 #define CHESS_BOARD_H
 
 #include <vector>
+#include <memory>
 #include "User.h"
 #include "Enemy.h"
 
@@ -16,11 +17,18 @@ class Square;
 class Board {
 public:
     Board(Enemy *, User *);
+
+    Board();
+
+    ~Board();
+
+    // Flip all pieces on the board
+    void flip();
 private:
     // 64 (8 (1 to 8) * 8 (a to h)) Squares
-    std::vector<std::vector<Square>> squares;
-    Enemy *enemy;
-    User *user;
+    std::vector<std::vector<Square *>> squares;
+    Enemy *enemy{};
+    User *user{};
 };
 
 

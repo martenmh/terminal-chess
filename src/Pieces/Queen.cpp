@@ -3,3 +3,11 @@
 //
 
 #include "Pieces/Queen.h"
+
+Queen::~Queen() {
+
+}
+
+Queen::Queen(Color c, Type t, Player *p, Position pos) : Piece(0, c, t, p, pos) {
+
+}

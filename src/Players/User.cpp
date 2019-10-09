@@ -8,4 +8,8 @@ User::User(Color c, std::string n) : Player(c, std::move(n)) {
 
 }
 
+void User::getInput(std::string) {
+
+}
+
 

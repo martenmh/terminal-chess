@@ -15,6 +15,8 @@ class Player;
 class Piece {
 public:
     Piece(int, Color, Type, Player *, Position = {static_cast<HorizontalPosition>(0), 0});
+
+    ~Piece();
     Color getColor();
     Type getType();
 

@@ -8,7 +8,10 @@
 #include "Piece.h"
 
 class Knight : public Piece {
+public:
+    Knight(int, Color, Type, Player *, Position = {static_cast<HorizontalPosition>(0), 0});
 
+    ~Knight();
 };
 
 

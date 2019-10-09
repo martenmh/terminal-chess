@@ -9,7 +9,7 @@
 
 class Enemy : public Player {
 public:
-    Enemy(Color, std::string);
+    Enemy(Color = Color::Black, std::string = "Bot");
 };
 
 

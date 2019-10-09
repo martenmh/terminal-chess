@@ -12,15 +12,16 @@ Game::Game() {
         std::cin >> name;
     }
 
-    char color;
+    char color = '\0';
     while (color != 'b' || color != 'w') {
         std::cout << "Do you wish to play as black or white? (b/w): ";
         std::cin >> color;
     }
+
     Color col = color == 'b' ? Color::Black : Color::White;
-    user = User(col, name);
-    enemy = Enemy(col, "Bot");
-    board = Board(&enemy, &user);
+    this->user = User(col, name);
+    this->enemy = Enemy(col, "Bot");
+    this->board = Board(&enemy, &user);
 }
 
 

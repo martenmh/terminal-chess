@@ -10,7 +10,10 @@
 //explicit Player(Color, std::string);
 class User : public Player {
 public:
-    User(Color, std::string);
+    User(Color = Color::White, std::string = "Player");
+
+    // TODO: Get either the descriptive or algebraic notation and play the piece
+    void getInput(std::string);
 };
 
 

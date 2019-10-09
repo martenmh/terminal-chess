@@ -3,3 +3,11 @@
 //
 
 #include "Pieces/Knight.h"
+
+Knight::~Knight() {
+
+}
+
+Knight::Knight(int i, Color c, Type t, Player *p, Position pos) : Piece(i, c, t, p, pos) {
+
+}
