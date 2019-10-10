@@ -11,7 +11,7 @@ Player::Player(Color c, std::string n) : name{std::move(n)}, color{c} {
     //Create all pieces
     // TODO: DELETE!
     // TODO: maybe set the index 1 higher so each chess piece has the index appropriate for the board
-    for (int i = 0; i < 6; ++i)
+    for (int i = 0; i < 8; ++i)
         P.push_back(new Pawn(i, c, Type::pawn, this));
 
     for (int i = 0; i < 2; ++i) {
@@ -27,25 +27,15 @@ Player::Player(Color c, std::string n) : name{std::move(n)}, color{c} {
 
 // TODO: Maybe decrease the index by -1 here so each chess piece has the index appropriate for the board
 Bishop *Player::getBishop(int index) {
-    if (indexOutOfRange(index))
-        return nullptr;
-
-    return B[index];
+    return B.at(index);
 }
 
 Pawn *Player::getPawn(int index) {
-    if (indexOutOfRange(index))
-        return nullptr;
-
-    return P[index];
-
+    return P.at(index);
 }
 
 Knight *Player::getKnight(int index) {
-    if (indexOutOfRange(index))
-        return nullptr;
-
-    return N[index];
+    return N.at(index);
 }
 
 Queen *Player::getQueen() {
@@ -57,16 +47,7 @@ King *Player::getKing() {
 }
 
 Rook *Player::getRook(int index) {
-    if (indexOutOfRange(index))
-        return nullptr;
-
-    return R[index];
-}
-
-bool Player::indexOutOfRange(int index) {
-    if (index < 1 || index > 8)
-        throw std::out_of_range("Index is out of bounds");
-    return false;
+    return R.at(index);
 }
 
 void Player::capturePiece(Piece *) {

@@ -4,4 +4,6 @@
 
 int main(){
     std::cout << "hello" << std::endl;
+    Game b = Game();
+
 }

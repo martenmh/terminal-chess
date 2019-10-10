@@ -4,6 +4,7 @@
 
 #include "Game.h"
 #include <iostream>
+#include <Square.h>
 
 Game::Game() {
     std::string name;
@@ -12,16 +13,20 @@ Game::Game() {
         std::cin >> name;
     }
 
-    char color = '\0';
-    while (color != 'b' || color != 'w') {
-        std::cout << "Do you wish to play as black or white? (b/w): ";
-        std::cin >> color;
-    }
+    char color = 'b';
+//    std::cout << "Do you wish to play as black or white? (b/w): ";
+//    std::cin >> color;
 
     Color col = color == 'b' ? Color::Black : Color::White;
     this->user = User(col, name);
     this->enemy = Enemy(col, "Bot");
     this->board = Board(&enemy, &user);
+//    for(auto row : board.squares){
+//        for(Square *column : row){
+//            std::cout << column->piece->getType() << std::endl;
+//        }
+//    }
+    std::cout << "Whaa" << std::endl;
 }
 
 

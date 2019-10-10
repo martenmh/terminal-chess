@@ -22,8 +22,9 @@ public:
 
     Piece *getPiece();
 
+    Piece *piece;
 private:
-    Piece* piece;
+
     Board *board;
     Position pos;
 };

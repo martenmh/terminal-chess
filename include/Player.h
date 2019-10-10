@@ -42,7 +42,7 @@ private:
     bool indexOutOfRange(int);
     Color color;
     std::string name;
-//    //6:
+//    //8:
 //    std::vector<std::shared_ptr<Pawn>> pawns;
 //    //2:
 //    std::vector<std::shared_ptr<Bishop>> bishops;

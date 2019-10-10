@@ -16,19 +16,22 @@ class Square;
 
 class Board {
 public:
+    // Set all squares with pointers to chess pieces on the heap (or nullptr if the square is empty)
     Board(Enemy *, User *);
-
     Board();
-
     ~Board();
-
     // Flip all pieces on the board
     void flip();
-private:
-    // 64 (8 (1 to 8) * 8 (a to h)) Squares
+
     std::vector<std::vector<Square *>> squares;
+private:
+    bool flipped;
+    // 64 (8 (1 to 8) * 8 (a to h)) Squares
+
     Enemy *enemy{};
     User *user{};
+
+    Square *setBackRow(unsigned int file, Position &pos, Player *);
 };
 
 
