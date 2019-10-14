@@ -53,3 +53,5 @@ Rook *Player::getRook(int index) {
 void Player::capturePiece(Piece *) {
 
 }
+
+

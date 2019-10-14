@@ -11,3 +11,4 @@ Bishop::Bishop(int i, Color c, Type t, Player *p, Position pos) : Piece(i, c, t,
 Bishop::~Bishop() {
 
 }
+

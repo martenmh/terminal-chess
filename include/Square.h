@@ -18,13 +18,16 @@ public:
 
     Board *getBoard();
 
-    bool setPiece(Piece &);
+    bool setPiece(Piece *);
 
     Piece *getPiece();
 
-    Piece *piece;
-private:
+    bool empty();
 
+    // Remove piece
+    void setEmpty();
+private:
+    Piece *piece;
     Board *board;
     Position pos;
 };

@@ -5,6 +5,7 @@
 #include <Square.h>
 #include <memory>
 #include "Board.h"
+#include <iostream>
 
 Board::Board(Enemy *ai, User *usr) : enemy{ai}, user{usr}, flipped{false} {
 
@@ -14,6 +15,7 @@ Board::Board(Enemy *ai, User *usr) : enemy{ai}, user{usr}, flipped{false} {
         std::vector<Square *> row;
         for (unsigned int file = 1; file <= 8; ++file) {
             Position pos = {static_cast<HorizontalPosition>(file), rank};
+            std::cout << fileToStr(pos.file) << pos.rank << std::endl;
             Square *square;
             // Set user pawns
             if (rank == 2) {
@@ -23,16 +25,17 @@ Board::Board(Enemy *ai, User *usr) : enemy{ai}, user{usr}, flipped{false} {
                 square = new Square(pos, this, ai->getPawn(file - 1));
                 // Set ai back row
             } else if (rank == 8) {
-                square = setBackRow(file - 1, pos, ai);
+                square = setBackRow(file, pos, ai);
                 // Set user back row
             } else if (rank == 1) {
-                square = setBackRow(file - 1, pos, user);
+                square = setBackRow(file, pos, user);
             } else {
                 square = new Square(pos, this, nullptr);
             }
-            row.emplace_back(square);
+            row.push_back(square);
         }
-        squares.push_back(row);
+        std::cout << rank << std::endl;
+        this->squares.push_back(row);
     }
 
 }
@@ -40,12 +43,12 @@ Board::Board(Enemy *ai, User *usr) : enemy{ai}, user{usr}, flipped{false} {
 Board::Board() = default;
 
 Board::~Board() {
-    for (auto row : squares) {
-        for (std::vector<Square *>::iterator it = row.begin(); it != row.end(); ++it) {
-            delete *it;
-            row.erase(it);
-        }
-    }
+//    for (auto row : squares) {
+//        for (int i = 0; i != row.size(); ++i) {
+//            std::cout << row.at(i)->piece->getIndex() << std::endl;
+//        }
+//    }
+//    squares.clear();
 }
 
 void Board::flip() {
@@ -53,23 +56,40 @@ void Board::flip() {
 }
 
 Square *Board::setBackRow(unsigned int file, Position &pos, Player *player) {
-    Square *square = nullptr;
     // If it is a rook
     if (file == 1 || file == 8) {
         // if the file is the first one of the left (file 1), set index to 0, else index = 1
-        square = new Square(pos, this, player->getRook((file == 1) ? 0 : 1));
+        return new Square(pos, this, player->getRook((file == 1) ? 0 : 1));
         // If it is a knight
     } else if (file == 2 || file == 7) {
-        square = new Square(pos, this, player->getKnight((file == 2) ? 0 : 1));
+        return new Square(pos, this, player->getKnight((file == 2) ? 0 : 1));
         // If it is a bishop
     } else if (file == 3 || file == 6) {
-        square = new Square(pos, this, player->getBishop((file == 3) ? 0 : 1));
+        return new Square(pos, this, player->getBishop((file == 3) ? 0 : 1));
         // king...
     } else if (file == 4) {
-        square = new Square(pos, this, player->getKing());
+        return new Square(pos, this, player->getKing());
         // queen.
     } else if (file == 5) {
-        square = new Square(pos, this, player->getQueen());
+        return new Square(pos, this, player->getQueen());
     }
-    return square;
 }
+
+void Board::move(Position from, Position to) {
+
+    Piece *swap;
+    Square *prevSquare = this->at(from);
+    Square *nextSquare = this->at(to);
+
+    swap = prevSquare->getPiece();
+    prevSquare->setEmpty();
+
+    nextSquare->setPiece(swap);
+}
+
+Square *Board::at(Position pos) {
+    return this->squares.at(pos.rank).at(pos.file);
+}
+
+
+

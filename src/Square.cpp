@@ -16,10 +16,18 @@ Board *Square::getBoard() {
     return nullptr;
 }
 
-bool Square::setPiece(Piece &) {
+bool Square::setPiece(Piece) {
     return false;
 }
 
 Piece *Square::getPiece() {
     return nullptr;
+}
+
+bool Square::empty() {
+    return piece != nullptr;
+}
+
+void Square::setEmpty() {
+    this->piece = nullptr;
 }

@@ -23,6 +23,9 @@ public:
     // Flip all pieces on the board
     void flip();
 
+    Square *at(Position pos);
+
+    void move(Position from, Position to);
     std::vector<std::vector<Square *>> squares;
 private:
     bool flipped;

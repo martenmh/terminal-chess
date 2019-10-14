@@ -11,4 +11,3 @@ King::King(Color c, Type t, Player *p, Position pos) : Piece(0, c, t, p, pos) {
 King::~King() {
 
 }
-
