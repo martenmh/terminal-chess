@@ -50,8 +50,40 @@ Rook *Player::getRook(int index) {
     return R.at(index);
 }
 
-void Player::capturePiece(Piece *) {
+void Player::capturePiece(Piece *p) {
+    unsigned int i = p->getIndex();
 
+    switch (p->getType()) {
+        case pawn:
+            captureUnknownVector<Pawn *>(&P, i);
+            break;
+        case rook:
+            captureUnknownVector<Rook *>(&R, i);
+            break;
+        case knight:
+            captureUnknownVector<Knight *>(&N, i);
+
+            break;
+        case bishop:
+            captureUnknownVector<Bishop *>(&B, i);
+
+            break;
+        case queen:
+            capturedQueue.push(Q);
+            break;
+        case king:
+            capturedQueue.push(K);
+            break;
+    }
 }
+
+template<typename T>
+void Player::captureUnknownVector(std::vector<T> *v, int i) {
+    T p = v->at(i);
+    v->erase(v->begin() + i);
+    capturedQueue.push(p);
+}
+
+
 
 

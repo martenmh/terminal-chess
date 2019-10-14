@@ -10,32 +10,41 @@
 Board::Board(Enemy *ai, User *usr) : enemy{ai}, user{usr}, flipped{false} {
 
     // TODO: Set all squares of the board and all pieces on the correct position
-    for (unsigned int rank = 1; rank <= 8; ++rank) {
+    for (unsigned int rank = 8; rank >= 1; --rank) {
 
         std::vector<Square *> row;
         for (unsigned int file = 1; file <= 8; ++file) {
             Position pos = {static_cast<HorizontalPosition>(file), rank};
             std::cout << fileToStr(pos.file) << pos.rank << std::endl;
-            Square *square;
+            Square *square = nullptr;
             // Set user pawns
             if (rank == 2) {
                 square = new Square(pos, this, user->getPawn(file - 1));
                 // Set ai pawns
             } else if (rank == 7) {
-                square = new Square(pos, this, ai->getPawn(file - 1));
+
+                square = new Square(pos, this, enemy->getPawn(file - 1));
                 // Set ai back row
             } else if (rank == 8) {
-                square = setBackRow(file, pos, ai);
+
+                square = setBackRow(file, pos, enemy);
                 // Set user back row
             } else if (rank == 1) {
                 square = setBackRow(file, pos, user);
             } else {
                 square = new Square(pos, this, nullptr);
             }
+
             row.push_back(square);
         }
-        std::cout << rank << std::endl;
-        this->squares.push_back(row);
+        squares.push_back(row);
+    }
+
+    for (auto row : squares) {
+        for (auto file : row) {
+            std::cout << fileToStr(file->getPosition().file) << file->getPosition().rank << " ";
+        }
+        std::cout << "\n";
     }
 
 }
@@ -45,13 +54,16 @@ Board::Board() = default;
 Board::~Board() {
 //    for (auto row : squares) {
 //        for (int i = 0; i != row.size(); ++i) {
-//            std::cout << row.at(i)->piece->getIndex() << std::endl;
+    // TODO: Delete Square
 //        }
 //    }
 //    squares.clear();
 }
 
+#include <algorithm>
+
 void Board::flip() {
+    std::reverse(squares.begin(), squares.end());
     flipped = true;
 }
 

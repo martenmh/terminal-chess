@@ -28,15 +28,33 @@ Game::Game() {
     Type types;
 
     for (auto row : board.squares) {
-        for (Square *column : row) {
-
-            std::cout << typeEnumToStr(column->getPiece()->getType()) << std::endl;
-            std::cout << column->getPiece() << std::endl;
-            std::cout << column->getPosition().rank << column->getPosition().file << std::endl;
-            std::cout << column->getPiece()->getPosition().file << column->getPiece()->getPosition().rank << std::endl;
+        for (auto file : row) {
+//            std::cout << fileToStr(file->getPosition().file) << file->getPosition().rank << " ";
+            if (file->getPiece()) {
+                char color = file->getPiece()->getColor() == Color::White ? 'W' : 'B';
+                std::cout << color << (char) file->getPiece()->getType() << " ";
+            } else {
+                std::cout << ' ' << " ";
+            }
         }
+        std::cout << "\n";
     }
-    std::cout << "Whaa" << std::endl;
+    std::cout << '\n';
+    board.flip();
+    for (auto row : board.squares) {
+
+        for (auto file : row) {
+//            std::cout << fileToStr(file->getPosition().file) << file->getPosition().rank << " ";
+            if (file->getPiece()) {
+                char color = file->getPiece()->getColor() == Color::White ? 'W' : 'B';
+                std::cout << color << (char) file->getPiece()->getType() << " ";
+
+            } else {
+                std::cout << ' ' << " ";
+            }
+        }
+        std::cout << "\n";
+    }
 }
 
 

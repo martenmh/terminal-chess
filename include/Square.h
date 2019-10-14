@@ -14,18 +14,25 @@ class Square {
 public:
     Square(Position, Board *, Piece * = nullptr);
 
+    /*
+     * Self explanatory
+     */
     Position getPosition();
-
     Board *getBoard();
 
-    bool setPiece(Piece *);
-
+    void setPiece(Piece *);
     Piece *getPiece();
 
-    bool empty();
-
-    // Remove piece
+    /*
+     * Set the chess piece on the square empty
+     * sets the piece as a nullptr because it doesn't point to a piece..
+     */
     void setEmpty();
+
+    /*
+     * Checks if there is a piece on the square
+     */
+    bool empty();
 private:
     Piece *piece;
     Board *board;

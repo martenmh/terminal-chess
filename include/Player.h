@@ -27,33 +27,28 @@ public:
 
     void capturePiece(Piece *);
 
+    /*
+     * Get the pieces of the player:
+     */
     Pawn *getPawn(int);
-
     Bishop *getBishop(int);
-
     Knight *getKnight(int);
-
     Rook *getRook(int);
-
     Queen *getQueen();
-
     King *getKing();
 private:
-    bool indexOutOfRange(int);
+
+    template<typename T>
+    void captureUnknownVector(std::vector<T> *, int);
+
     Color color;
     std::string name;
-//    //8:
-//    std::vector<std::shared_ptr<Pawn>> pawns;
-//    //2:
-//    std::vector<std::shared_ptr<Bishop>> bishops;
-//    std::vector<std::shared_ptr<Knight>> knights;
-//    std::vector<std::shared_ptr<Rook>> rooks;
-//
-//    //1:
-//    std::shared_ptr<Queen> queen;
-//    std::shared_ptr<King> king;
-//    std::queue<std::shared_ptr<Piece>> capturedPieces;
-// Chess notation names
+
+    /*
+     * Chess notation names:
+     * Pawn(P) contains 8 pawns;
+     * Bishop(B), Knight(N) & Rook(R) contain 2.
+     */
     std::vector<Pawn *> P;
     std::vector<Bishop *> B;
     std::vector<Knight *> N;
@@ -61,6 +56,7 @@ private:
     Queen *Q;
     King *K;
 
+    std::queue<Piece *> capturedQueue;
 
 
 

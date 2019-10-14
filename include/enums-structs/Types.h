@@ -8,40 +8,40 @@
 #include <string>
 
 enum Type {
-    pawn,
-    rook,
-    knight,
-    bishop,
-    queen,
-    king
+    pawn = 'P',
+    rook = 'R',
+    knight = 'N',
+    bishop = 'B',
+    queen = 'Q',
+    king = 'K'
 };
 
-// Mainly for debugging purposes
+// Returns the accompanying
 inline std::string typeEnumToStr(int n) {
     std::string s("unknown");
     switch (n) {
         case 0: {
-            s = "Pawn";
+            s = "P";
         }
             break;
         case 1: {
-            s = "Rook";
+            s = "R";
         }
             break;
         case 2: {
-            s = "Knight";
+            s = "N";
         }
             break;
         case 3: {
-            s = "Bishop";
+            s = "B";
         }
             break;
         case 4: {
-            s = "Queen";
+            s = "Q";
         }
             break;
         case 5: {
-            s = "King";
+            s = "K";
         }
             break;
     }
