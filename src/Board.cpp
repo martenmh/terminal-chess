@@ -71,12 +71,12 @@ Square *Board::setBackRow(Position &pos, Player *player) {
         // If it is a bishop
     } else if (file == 3 || file == 6) {
         return new Square(pos, this, player->getBishop((file == 3) ? 0 : 1));
-        // king...
+        // queen..
     } else if (file == 4) {
-        return new Square(pos, this, player->getKing());
-        // queen.
-    } else if (file == 5) {
         return new Square(pos, this, player->getQueen());
+        // king.
+    } else if (file == 5) {
+        return new Square(pos, this, player->getKing());
     }
 }
 
@@ -88,20 +88,49 @@ void Board::move(Position from, Position to) {
 
     swap = prevSquare->getPiece();
     prevSquare->setEmpty();
-
     nextSquare->setPiece(swap);
+    swap->setPosition(nextSquare->getPosition());
 }
 
 Square *Board::at(Position pos) {
     return this->squares.at(pos.rank).at(pos.file);
 }
 
+#include "Game.h"
 void Board::display() {
+
+    // TODO Display moves on the side of the board
+
+    /*
+         a  b  c  d  e  f  g  h            Bot: P N
+       -------------------------           __________
+     8 |BR|BN|BB|BK|BQ|BB|BN|BR|           1. e4 e5
+       |--|--|--|--|--|--|--|--|           2. Nf3 Nc6
+     7 |BP|BP|BP|BP|BP|BP|BP|BP|           3. Bb5 a6
+       |--|--|--|--|--|--|--|--|           4. Rxd4 ..
+     6 |  |  |  |  |  |  |  |  |
+       |--|--|--|--|--|--|--|--|           __________
+     5 |  |  |  |  |  |  |  |  |           Player: P R P P
+       |--|--|--|--|--|--|--|--|
+     4 |  |  |  |  |  |  |  |  |
+       |--|--|--|--|--|--|--|--|
+     3 |  |  |  |  |  |  |  |  |
+       |--|--|--|--|--|--|--|--|
+     2 |WP|WP|WP|WP|WP|WP|WP|WP|
+       |--|--|--|--|--|--|--|--|
+     1 |WR|WN|WB|WK|WQ|WB|WN|WR|
+       -------------------------
+     : Rxd4
+
+     */
+
+    Game::displayPlayer(enemy);
+
     std::cout << "    a  b  c  d  e  f  g  h\n  -------------------------\n";
     // Reverse loop so the board starts at 8
     for (int i = 7; i >= 0; --i) {
         auto row = this->squares.at(i);
-        std::cout << row.at(0)->getPosition().rank << " |";
+        std::cout << i + 1 << " |";
         for (auto file : row) {
             if (file->getPiece()) {
                 char color = file->getPiece()->getColor() == Color::White ? 'W' : 'B';
@@ -118,39 +147,16 @@ void Board::display() {
                 std::cout << "  |";
             }
         }
-        std::cout << "\n  |--|--|--|--|--|--|--|--|\n";
-        //std::cout << '\n';
-    }
-
-}
-
-std::string Board::displayStr() {
-    std::string display = "    a  b  c  d  e  f  g  h\n  -------------------------\n";
-
-    // Reverse loop so the board starts at 8
-    for (int i = 7; i >= 0; --i) {
-        auto row = this->squares.at(i);
-        display += row.at(0)->getPosition().rank + " |";
-        for (auto file : row) {
-            if (file->getPiece()) {
-                char color = file->getPiece()->getColor() == Color::White ? 'W' : 'B';
-                display += color + (char) file->getPiece()->getType() + "|";
-
-                // TODO (maybe?): set foreground and background colors depending on the colors
-                // TODO create Color class
-                //// "\033[0;33;42mI am a Banana!\033[0m"
-                // unsigned int squareColor = file->getColor() == Color::Black ? 40 : 47;
-                //unsigned int pieceColor = file->getPiece()->getColor() == Color::Black ? 30 : 37;
-                // display << "\033[1;" << pieceColor << "m" << (char) file->getPiece()->getType() << "\033[0m|";
-
-            } else {
-                display += "  |";
-            }
+        if (i == 0) {
+            std::cout << "\n  -------------------------\n";
+            break;
         }
-        display += "\n  |--|--|--|--|--|--|--|--|\n";
+
+        std::cout << "\n  |--|--|--|--|--|--|--|--|\n";
+
     }
 
-    return display;
+    Game::displayPlayer(user);
 }
 
 

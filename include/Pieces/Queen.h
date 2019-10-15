@@ -11,6 +11,7 @@ class Queen : public Piece {
 public:
     Queen(Color, Type, Player *, Position = {static_cast<HorizontalPosition>(0), 0});
 
+    bool positionPossible(Position) override;
     ~Queen();
 };
 

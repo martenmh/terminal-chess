@@ -11,6 +11,7 @@ class Pawn : public Piece {
 public:
     Pawn(int, Color, Type, Player *, Position = {static_cast<HorizontalPosition>(0), 0});
 
+    bool positionPossible(Position) override;
     ~Pawn();
 };
 

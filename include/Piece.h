@@ -21,18 +21,21 @@ public:
     ~Piece();
     Color getColor();
     Type getType();
-
     Position getPosition();
-
     void setPosition(Position);
-
     int getIndex();
-
     Player *getPlayer();
+
+    bool hasMoved();
+
+    // Has to be implemented by derived classes
+    virtual bool positionPossible(Position);
+
 protected:
     Player *player;
     Board *board;
     Position pos;
+    Position origPos;
     Color color;
     Type pieceType;
     int index;

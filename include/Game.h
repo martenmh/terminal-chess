@@ -19,6 +19,9 @@ public:
     void next();
     void prev();
 
+    static void displayPlayer(Player *);
+
+
 private:
     Board board;
     Enemy enemy;

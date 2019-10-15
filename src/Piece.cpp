@@ -5,7 +5,8 @@
 #include <Board.h>
 #include "Piece.h"
 
-Piece::Piece(int i, Color c, Type t, Player *p, Position pos) : pos{pos}, index{i}, color{c}, pieceType{t}, player{p} {
+Piece::Piece(int i, Color c, Type t, Player *p, Position pos) : pos{pos}, index{i}, color{c}, pieceType{t}, player{p},
+                                                                origPos{pos} {
 
 }
 
@@ -37,8 +38,14 @@ Piece::~Piece() {
 
 }
 
+
 void Piece::setPosition(Position p) {
 
     this->board->squares.at(pos.rank).at(pos.file);
     this->pos = p;
 }
+
+bool Piece::hasMoved() {
+    return origPos.rank == pos.rank && origPos.file == pos.file;
+}
+

@@ -69,10 +69,10 @@ void Player::capturePiece(Piece *p) {
 
             break;
         case queen:
-            capturedQueue.push(Q);
+            capturedQueue.push_back(Q);
             break;
         case king:
-            capturedQueue.push(K);
+            capturedQueue.push_back(K);
             break;
     }
 }
@@ -81,13 +81,23 @@ template<typename T>
 void Player::captureUnknownVector(std::vector<T> *v, int i) {
     T p = v->at(i);
     v->erase(v->begin() + i);
-    capturedQueue.push(p);
+    capturedQueue.push_back(p);
 }
 
 void Player::setBoard(Board *b) {
     this->board = b;
 }
 
+std::string Player::getName() {
+    return name;
+}
 
+std::vector<Piece *> Player::getCapturedQueue() {
+    return capturedQueue;
+}
+
+Color Player::getColor() {
+    return color;
+}
 
 

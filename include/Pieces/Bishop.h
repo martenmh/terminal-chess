@@ -10,6 +10,7 @@ class Bishop : public Piece {
 public:
     Bishop(int, Color, Type, Player *, Position = {static_cast<HorizontalPosition>(0), 0});
 
+    bool positionPossible(Position) override;
     ~Bishop();
 };
 

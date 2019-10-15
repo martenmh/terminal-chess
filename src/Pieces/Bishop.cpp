@@ -8,7 +8,17 @@ Bishop::Bishop(int i, Color c, Type t, Player *p, Position pos) : Piece(i, c, t,
 
 }
 
+bool Bishop::positionPossible(Position pos) {
+
+
+    return false;
+}
+
 Bishop::~Bishop() {
+
+}
+
+bool Piece::positionPossible(Position) {
 
 }
 

@@ -8,22 +8,15 @@
 
 
 Game::Game() {
-    std::string name;
-    while (name.empty()) {
-        std::cout << "Name: ";
-        std::cin >> name;
-    }
 
-//
     char color = '\0';
     do {
         std::cout << "Do you wish to play as black or white? (b/w): ";
         std::cin >> color;
     } while (color == '\0');
 
-
     Color col = color == 'b' ? Color::Black : Color::White, botCol = color == 'b' ? Color::White : Color::Black;
-    this->user = User(col, name);
+    this->user = User(col, "player");
     this->enemy = Enemy(botCol, "bot");
     this->board = Board(&enemy, &user);
     user.setBoard(&board);
@@ -58,6 +51,10 @@ void Game::start() {
 
     // Main program loop:
     do {
+        // Clear screen:
+        std::cout << "\033[2J\033[1;1H";
+
+        // Display board
         board.display();
 
         std::string input;
@@ -72,4 +69,12 @@ void Game::start() {
 
     } while (b);
 
+}
+
+void Game::displayPlayer(Player *p) {
+    std::cout << p->getName() << ": ";
+    for (auto piece : p->getCapturedQueue()) {
+        std::cout << (char) piece->getType() << " ";
+    }
+    std::cout << "\n";
 }

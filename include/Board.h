@@ -28,8 +28,6 @@ public:
     void move(Position from, Position to);
     std::vector<std::vector<Square *>> squares;
 
-    std::string displayStr();
-
     void display();
 private:
     bool flipped;

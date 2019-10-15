@@ -11,3 +11,7 @@ Rook::Rook(int i, Color c, Type t, Player *p, Position pos) : Piece(i, c, t, p, 
 Rook::~Rook() {
 
 }
+
+bool Rook::positionPossible(Position) {
+    return false;
+}

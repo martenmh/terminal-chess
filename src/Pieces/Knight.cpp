@@ -12,4 +12,8 @@ Knight::Knight(int i, Color c, Type t, Player *p, Position pos) : Piece(i, c, t,
 
 }
 
+bool Knight::positionPossible(Position) {
+    return false;
+}
+
 

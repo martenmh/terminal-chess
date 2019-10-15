@@ -39,6 +39,15 @@ public:
     Queen *getQueen();
     King *getKing();
 
+    /*
+     * Get other information of the player
+     */
+    Color getColor();
+
+    std::string getName();
+
+    std::vector<Piece *> getCapturedQueue();
+
 protected:
 
     template<typename T>
@@ -59,7 +68,7 @@ protected:
     Queen *Q;
     King *K;
 
-    std::queue<Piece *> capturedQueue;
+    std::vector<Piece *> capturedQueue;
 
     Board *board;
 
