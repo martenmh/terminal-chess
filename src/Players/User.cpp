@@ -14,15 +14,10 @@ User::User(Color c, std::string n) : Player(c, std::move(n)) {
 bool User::set(std::string input) {
     // parse input:
 
-    for (auto row : board->squares) {
-        for (auto column : row) {
-            std::cout << column->getPosition().rank << " " << column->getPosition().file << std::endl;
-        }
-    }
 
     //TODO if input is invalid return false;
-    Position pos = {HorizontalPosition::a, 1};
-    Position paos = {HorizontalPosition::d, 3};
+    Position pos = {.file = HorizontalPosition::a, .rank = 1};
+    Position paos = {.file = HorizontalPosition::d, .rank = 3};
 
     Square *s = board->at(pos);
     Piece *p = s->getPiece();

@@ -13,6 +13,9 @@ public:
     User(Color = Color::White, std::string = "Player");
 
     // TODO: Get either the descriptive or algebraic notation and play the piece
+    /*
+     * Parse input and set a piece or give an error if either the input or set is invalid
+     */
     bool set(std::string);
 };
 

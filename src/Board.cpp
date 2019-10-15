@@ -10,7 +10,7 @@
 Board::Board(Enemy *ai, User *usr) : enemy{ai}, user{usr}, flipped{false} {
 
     // TODO: Set all squares of the board and all pieces on the correct position
-    for (unsigned int rank = 8; rank >= 1; --rank) {
+    for (unsigned int rank = 1; rank <= 8; ++rank) {
 
         std::vector<Square *> row;
         for (unsigned int file = 1; file <= 8; ++file) {
@@ -94,6 +94,63 @@ void Board::move(Position from, Position to) {
 
 Square *Board::at(Position pos) {
     return this->squares.at(pos.rank).at(pos.file);
+}
+
+void Board::display() {
+    std::cout << "    a  b  c  d  e  f  g  h\n  -------------------------\n";
+    // Reverse loop so the board starts at 8
+    for (int i = 7; i >= 0; --i) {
+        auto row = this->squares.at(i);
+        std::cout << row.at(0)->getPosition().rank << " |";
+        for (auto file : row) {
+            if (file->getPiece()) {
+                char color = file->getPiece()->getColor() == Color::White ? 'W' : 'B';
+                std::cout << color << (char) file->getPiece()->getType() << "|";
+
+                // TODO (maybe?): set foreground and background colors depending on the colors
+                // TODO create Color class
+                //// "\033[0;33;42mI am a Banana!\033[0m"
+                // unsigned int squareColor = file->getColor() == Color::Black ? 40 : 47;
+                //unsigned int pieceColor = file->getPiece()->getColor() == Color::Black ? 30 : 37;
+                // std::cout << "\033[1;" << pieceColor << "m" << (char) file->getPiece()->getType() << "\033[0m|";
+
+            } else {
+                std::cout << "  |";
+            }
+        }
+        std::cout << "\n  |--|--|--|--|--|--|--|--|\n";
+        //std::cout << '\n';
+    }
+
+}
+
+std::string Board::displayStr() {
+    std::string display = "    a  b  c  d  e  f  g  h\n  -------------------------\n";
+
+    // Reverse loop so the board starts at 8
+    for (int i = 7; i >= 0; --i) {
+        auto row = this->squares.at(i);
+        display += row.at(0)->getPosition().rank + " |";
+        for (auto file : row) {
+            if (file->getPiece()) {
+                char color = file->getPiece()->getColor() == Color::White ? 'W' : 'B';
+                display += color + (char) file->getPiece()->getType() + "|";
+
+                // TODO (maybe?): set foreground and background colors depending on the colors
+                // TODO create Color class
+                //// "\033[0;33;42mI am a Banana!\033[0m"
+                // unsigned int squareColor = file->getColor() == Color::Black ? 40 : 47;
+                //unsigned int pieceColor = file->getPiece()->getColor() == Color::Black ? 30 : 37;
+                // display << "\033[1;" << pieceColor << "m" << (char) file->getPiece()->getType() << "\033[0m|";
+
+            } else {
+                display += "  |";
+            }
+        }
+        display += "\n  |--|--|--|--|--|--|--|--|\n";
+    }
+
+    return display;
 }
 
 

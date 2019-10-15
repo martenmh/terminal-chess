@@ -27,6 +27,10 @@ public:
 
     void move(Position from, Position to);
     std::vector<std::vector<Square *>> squares;
+
+    std::string displayStr();
+
+    void display();
 private:
     bool flipped;
     // 64 (8 (1 to 8) * 8 (a to h)) Squares

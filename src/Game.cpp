@@ -34,25 +34,31 @@ Game::Game() {
 
 
 void Game::start() {
+
+//    ANSI color codes:
+//    foreground background
+//    black        30         40
+//    red          31         41
+//    green        32         42
+//    yellow       33         43
+//    blue         34         44
+//    magenta      35         45
+//    cyan         36         46
+//    white        37         47
+//
+//    Additionally, you can use these:
+//
+//    reset             0  (everything back to normal)
+//    bold/bright       1  (often a brighter shade of the same colour)
+//    underline         4
+//    inverse           7  (swap foreground and background colours)
+//    bold/bright off  21
+//    underline off    24
     bool b = true;
 
     // Main program loop:
     do {
-        std::cout << "    a  b  c  d  e  f  g  h" << '\n' << "  -------------------------";
-        std::cout << '\n';
-        for (auto row : board.squares) {
-            std::cout << row.at(0)->getPosition().rank << " |";
-            for (auto file : row) {
-
-                if (file->getPiece()) {
-                    char color = file->getPiece()->getColor() == Color::White ? 'W' : 'B';
-                    std::cout << color << (char) file->getPiece()->getType() << "|";
-                } else {
-                    std::cout << "  |";
-                }
-            }
-            std::cout << "\n" << "  |--|--|--|--|--|--|--|--|" << '\n';
-        }
+        board.display();
 
         std::string input;
 
