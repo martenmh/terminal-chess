@@ -10,6 +10,8 @@
 class Enemy : public Player {
 public:
     Enemy(Color = Color::Black, std::string = "Bot");
+
+    void play();
 };
 
 

@@ -15,7 +15,7 @@ Board::Board(Enemy *ai, User *usr) : enemy{ai}, user{usr}, flipped{false} {
         std::vector<Square *> row;
         for (unsigned int file = 1; file <= 8; ++file) {
             Position pos = {static_cast<HorizontalPosition>(file), rank};
-            std::cout << fileToStr(pos.file) << pos.rank << std::endl;
+
             Square *square = nullptr;
             // Set user pawns
             if (rank == 2) {
@@ -27,10 +27,10 @@ Board::Board(Enemy *ai, User *usr) : enemy{ai}, user{usr}, flipped{false} {
                 // Set ai back row
             } else if (rank == 8) {
 
-                square = setBackRow(file, pos, enemy);
+                square = setBackRow(pos, enemy);
                 // Set user back row
             } else if (rank == 1) {
-                square = setBackRow(file, pos, user);
+                square = setBackRow(pos, user);
             } else {
                 square = new Square(pos, this, nullptr);
             }
@@ -39,14 +39,6 @@ Board::Board(Enemy *ai, User *usr) : enemy{ai}, user{usr}, flipped{false} {
         }
         squares.push_back(row);
     }
-
-    for (auto row : squares) {
-        for (auto file : row) {
-            std::cout << fileToStr(file->getPosition().file) << file->getPosition().rank << " ";
-        }
-        std::cout << "\n";
-    }
-
 }
 
 Board::Board() = default;
@@ -67,8 +59,9 @@ void Board::flip() {
     flipped = true;
 }
 
-Square *Board::setBackRow(unsigned int file, Position &pos, Player *player) {
+Square *Board::setBackRow(Position &pos, Player *player) {
     // If it is a rook
+    unsigned int file = pos.file;
     if (file == 1 || file == 8) {
         // if the file is the first one of the left (file 1), set index to 0, else index = 1
         return new Square(pos, this, player->getRook((file == 1) ? 0 : 1));

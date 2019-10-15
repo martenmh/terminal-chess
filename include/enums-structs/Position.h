@@ -7,14 +7,14 @@
 
 
 enum HorizontalPosition {
-    a = 'a',
-    b = 'b',
-    c = 'c',
-    d = 'd',
-    e = 'e',
-    f = 'f',
-    g = 'g',
-    h = 'h'
+    a,
+    b,
+    c,
+    d,
+    e,
+    f,
+    g,
+    h
 };
 
 struct Position {

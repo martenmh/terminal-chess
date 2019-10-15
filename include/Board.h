@@ -34,7 +34,7 @@ private:
     Enemy *enemy{};
     User *user{};
 
-    Square *setBackRow(unsigned int file, Position &pos, Player *);
+    Square *setBackRow(Position &pos, Player *);
 };
 
 

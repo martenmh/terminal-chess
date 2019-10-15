@@ -7,3 +7,7 @@
 Enemy::Enemy(Color c, std::string n) : Player(c, n) {
 
 }
+
+void Enemy::play() {
+
+}

@@ -20,11 +20,13 @@
 #include <queue>
 #include "Position.h"
 
+class Board;
 
 class Player {
 public:
     explicit Player(Color, std::string);
 
+    void setBoard(Board *);
     void capturePiece(Piece *);
 
     /*
@@ -36,7 +38,8 @@ public:
     Rook *getRook(int);
     Queen *getQueen();
     King *getKing();
-private:
+
+protected:
 
     template<typename T>
     void captureUnknownVector(std::vector<T> *, int);
@@ -58,7 +61,7 @@ private:
 
     std::queue<Piece *> capturedQueue;
 
-
+    Board *board;
 
 };
 

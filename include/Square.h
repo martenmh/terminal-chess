@@ -20,8 +20,10 @@ public:
     Position getPosition();
     Board *getBoard();
 
+    Color getColor();
     void setPiece(Piece *);
     Piece *getPiece();
+
 
     /*
      * Set the chess piece on the square empty
@@ -34,6 +36,7 @@ public:
      */
     bool empty();
 private:
+    Color color;
     Piece *piece;
     Board *board;
     Position pos;

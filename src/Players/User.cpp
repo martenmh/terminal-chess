@@ -1,14 +1,37 @@
 //
 // Created by root on 10/6/19.
 //
+#include <Board.h>
 #include "Players/User.h"
 
 User::User(Color c, std::string n) : Player(c, std::move(n)) {
 
 }
 
-void User::getInput(std::string) {
+#include "Square.h"
+#include <iostream>
 
+bool User::set(std::string input) {
+    // parse input:
+
+    for (auto row : board->squares) {
+        for (auto column : row) {
+            std::cout << column->getPosition().rank << " " << column->getPosition().file << std::endl;
+        }
+    }
+
+    //TODO if input is invalid return false;
+    Position pos = {HorizontalPosition::a, 1};
+    Position paos = {HorizontalPosition::d, 3};
+
+    Square *s = board->at(pos);
+    Piece *p = s->getPiece();
+    s->setEmpty();
+    Square *newPosition = board->at(paos);
+
+    newPosition->setPiece(p);
+    return true;
 }
+
 
 

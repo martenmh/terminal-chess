@@ -84,6 +84,10 @@ void Player::captureUnknownVector(std::vector<T> *v, int i) {
     capturedQueue.push(p);
 }
 
+void Player::setBoard(Board *b) {
+    this->board = b;
+}
+
 
 
 

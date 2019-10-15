@@ -13,7 +13,7 @@ public:
     User(Color = Color::White, std::string = "Player");
 
     // TODO: Get either the descriptive or algebraic notation and play the piece
-    void getInput(std::string);
+    bool set(std::string);
 };
 
 
