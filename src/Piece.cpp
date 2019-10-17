@@ -49,3 +49,24 @@ bool Piece::hasMoved() {
     return origPos.rank == pos.rank && origPos.file == pos.file;
 }
 
+Position Piece::finalPositioInPath(Position origPos, Position increasedPos, int maxPos) {
+
+    Position newPos = origPos + increasedPos;
+    // If the function has reached the max position
+    if (maxPos == 0)
+        return origPos;
+
+    // If the new position is not on the board
+    if (board->positionOutOfBounds(newPos.file, newPos.rank))
+        return origPos;
+
+    // If the new position contains a piece return pos
+    if (board->at(newPos)->getPiece()) {
+        return origPos;
+    }
+
+    finalPositioInPath(newPos, increasedPos, maxPos - 1);
+}
+
+
+

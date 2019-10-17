@@ -9,6 +9,10 @@
 #include "Types.h"
 #include "Color.h"
 #include "Position.h"
+#include "Square.h"
+#include <vector>
+
+#include "Board.h"
 
 class Board;
 class Player;
@@ -29,7 +33,24 @@ public:
     bool hasMoved();
 
     // Has to be implemented by derived classes
-    virtual bool positionPossible(Position);
+    /*
+     * Returns a vector with all the possible squares for the piece,
+     * This can be used to check if the new position given by the player is possible
+     * & for the AI algorithm
+     */
+    virtual std::vector<Square> possiblePositions();
+
+    /*
+     * This recursive functions checks if it is possible for a piece to move in a certain path without blockades
+     * It is useful to know for every piece except the knight,
+     * when given an increased pos it wil check in a "straight":
+     * horizontal Pos(1, 0) & Pos(-1, 0),
+     * vertical Pos(0, 1) &  Pos(0, -1) and
+     * diagonal Pos(1, 1) & Pos(1, -1) & Pos(-1, 1) & Pos(-1, -1)
+     * path and return the final possible position in the path.
+     * The maxPos is for pieces that cannot move more than 2 positions at a time.
+     */
+    Position finalPositioInPath(Position origPos, Position increasedPos, int maxPos);
 
 protected:
     Player *player;

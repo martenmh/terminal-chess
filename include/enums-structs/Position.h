@@ -17,12 +17,21 @@ enum HorizontalPosition {
     h
 };
 
+
 struct Position {
     // a to h
     HorizontalPosition file;
     // 1 to 8
-    unsigned int rank;
+    int rank;
+
+    inline Position operator+(Position &other) {
+        return Position{static_cast<HorizontalPosition >(file + other.file), rank + other.rank};
+    }
 };
+
+inline Position position(int file, int rank) {
+    return Position{static_cast<HorizontalPosition>(file), rank};
+}
 
 // Mainly for debugging purposes
 inline char fileToStr(int n) {

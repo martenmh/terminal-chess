@@ -12,6 +12,6 @@ Rook::~Rook() {
 
 }
 
-bool Rook::positionPossible(Position) {
-    return false;
+std::vector<Square> Rook::possiblePositions() {
+    return std::vector<Square>();
 }

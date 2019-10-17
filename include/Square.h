@@ -10,6 +10,8 @@
 
 #include "Position.h"
 
+class Board;
+
 class Square {
 public:
     Square(Position, Board *, Piece * = nullptr);

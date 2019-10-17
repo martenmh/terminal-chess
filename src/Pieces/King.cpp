@@ -12,6 +12,6 @@ King::~King() {
 
 }
 
-bool King::positionPossible(Position) {
-    return false;
+std::vector<Square> King::possiblePositions() {
+    return Piece::possiblePositions();
 }

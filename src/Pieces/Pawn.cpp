@@ -13,9 +13,30 @@ Pawn::~Pawn() {
 
 }
 
-#include "Player.h"
-#include "Board.h"
-#include "Square.h"
+//#include "Position.h"
+std::vector<Square> Pawn::possiblePositions() {
+    std::vector<Square *> positions;
+
+    // Check front left, front right
+    Position curPos = getPosition();
+    Position frontL = position(0, 1);
+    Position frontL = position(0, 2);
+    Position frontL = position(1, 1);
+    Position frontL = position(-1, 1);
+
+
+    for (auto b : {curPos + position(2, 1), position(5, 2)}) {
+        Square *square = board->at(b);
+        if (square->getPiece()->getColor() != this->color)
+            positions.push_back(square);
+    }
+
+    if (this->hasMoved()) {
+        finalPositioInPath(this->pos, position(0, 1), 2);
+    }
+
+
+}
 
 bool Pawn::positionPossible(Position p) {
     bool isWhite = player->getColor() == Color::White;

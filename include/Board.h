@@ -10,8 +10,11 @@
 #include "User.h"
 #include "Enemy.h"
 
-class Square;
+class User;
 
+class Enemy;
+
+class Square;
 #include "Position.h"
 
 class Board {
@@ -24,6 +27,8 @@ public:
     void flip();
 
     Square *at(Position pos);
+
+    bool positionOutOfBounds(int rank, int file);
 
     void move(Position from, Position to);
     std::vector<std::vector<Square *>> squares;

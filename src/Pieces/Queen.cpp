@@ -12,6 +12,7 @@ Queen::Queen(Color c, Type t, Player *p, Position pos) : Piece(0, c, t, p, pos) 
 
 }
 
-bool Queen::positionPossible(Position) {
-    return false;
+std::vector<Square> Queen::possiblePositions() {
+    return Piece::possiblePositions();
 }
+

@@ -156,7 +156,11 @@ void Board::display() {
 
     }
 
-    Game::displayPlayer(user);
+    Game::displayPlayer(static_cast<Player *>(user));
+}
+
+bool Board::positionOutOfBounds(int rank, int file) {
+    return (file < 1 || file > 8 || rank < 1 || rank > 8);
 }
 
 
