@@ -5,12 +5,11 @@
 #ifndef CHESS_SQUARE_H
 #define CHESS_SQUARE_H
 
-#include "Piece.h"
-#include "Board.h"
 
+#include "Board.h"
 #include "Position.h"
 
-class Board;
+class Piece;
 
 class Square {
 public:

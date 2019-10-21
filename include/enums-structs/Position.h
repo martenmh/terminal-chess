@@ -17,24 +17,8 @@ enum HorizontalPosition {
     h
 };
 
-
-struct Position {
-    // a to h
-    HorizontalPosition file;
-    // 1 to 8
-    int rank;
-
-    inline Position operator+(Position &other) {
-        return Position{static_cast<HorizontalPosition >(file + other.file), rank + other.rank};
-    }
-};
-
-inline Position position(int file, int rank) {
-    return Position{static_cast<HorizontalPosition>(file), rank};
-}
-
 // Mainly for debugging purposes
-inline char fileToStr(int n) {
+static inline char fileToStr(int n) {
     char s('\0');
     switch (n) {
         case 1: {
@@ -73,7 +57,62 @@ inline char fileToStr(int n) {
     return s;
 }
 
+// Mainly for debugging purposes
+static inline int strToFile(char n) {
+    int s = 0;
+    switch (n) {
+        case 1: {
+            s = 1;
+        }
+            break;
+        case 2: {
+            s = 2;
+        }
+            break;
+        case 3: {
+            s = 3;
+        }
+            break;
+        case 4: {
+            s = 4;
+        }
+            break;
+        case 5: {
+            s = 5;
+        }
+            break;
+        case 6: {
+            s = 6;
+        }
+            break;
+        case 7: {
+            s = 7;
+        }
+            break;
+        case 8: {
+            s = 8;
+        }
+            break;
+    }
+    return s;
+}
 
+struct Position {
+    // a to h
+    HorizontalPosition file;
+    // 1 to 8
+    int rank;
+
+
+    // strToFile() to make sure the files are numbers & not characters
+    inline Position operator+(Position other) {
+        return Position{static_cast<HorizontalPosition >(strToFile(file) + strToFile(other.file)), rank + other.rank};
+    }
+};
+
+inline Position position(int file, int rank) {
+    return Position{static_cast<HorizontalPosition>(file), rank};
+}
 
 
 #endif //CHESS_POSITION_H

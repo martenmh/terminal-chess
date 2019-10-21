@@ -86,6 +86,16 @@ void Player::captureUnknownVector(std::vector<T> *v, int i) {
 
 void Player::setBoard(Board *b) {
     this->board = b;
+    for (auto p : P)
+        p->setBoard(b);
+    for (auto n : N)
+        n->setBoard(b);
+    for (auto bi : B)
+        bi->setBoard(b);
+    for (auto r : R)
+        r->setBoard(b);
+    K->setBoard(b);
+    Q->setBoard(b);
 }
 
 std::string Player::getName() {

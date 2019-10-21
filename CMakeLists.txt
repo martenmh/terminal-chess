@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project( Chess )
+project(bin/Chess)
 include_directories(include include/Pieces include/Players include/enums-structs)
-add_executable(Chess src/main.cpp src/Piece.cpp include/Piece.h src/Game.cpp include/Game.h src/Board.cpp include/Board.h src/Pieces/Pawn.cpp include/Pieces/Pawn.h src/Pieces/Rook.cpp include/Pieces/Rook.h src/Pieces/Knight.cpp include/Pieces/Knight.h src/Pieces/Bishop.cpp include/Pieces/Bishop.h src/Pieces/Queen.cpp include/Pieces/Queen.h src/Pieces/King.cpp include/Pieces/King.h src/Player.cpp include/Player.h src/Players/User.cpp include/Players/User.h src/Players/Enemy.cpp include/Players/Enemy.h src/Square.cpp include/Square.h)
-target_link_libraries( Chess )
+add_executable(bin/Chess src/main.cpp src/Square.cpp include/Square.h src/Game.cpp include/Game.h src/Board.cpp include/Board.h src/Piece.cpp include/Piece.h src/Pieces/Pawn.cpp include/Pieces/Pawn.h src/Pieces/Rook.cpp include/Pieces/Rook.h src/Pieces/Knight.cpp include/Pieces/Knight.h src/Pieces/Bishop.cpp include/Pieces/Bishop.h src/Pieces/Queen.cpp include/Pieces/Queen.h src/Pieces/King.cpp include/Pieces/King.h src/Player.cpp include/Player.h src/Players/User.cpp include/Players/User.h src/Players/Enemy.cpp include/Players/Enemy.h)
+target_link_libraries(bin/Chess)

@@ -49,23 +49,28 @@ bool Piece::hasMoved() {
     return origPos.rank == pos.rank && origPos.file == pos.file;
 }
 
-Position Piece::finalPositioInPath(Position origPos, Position increasedPos, int maxPos) {
+#include "Square.h"
 
-    Position newPos = origPos + increasedPos;
+Position Piece::finalPositionInPath(Position originalPos, Position increasedPos, int maxPos) {
+    Position newPos = originalPos + increasedPos;
+
     // If the function has reached the max position
     if (maxPos == 0)
-        return origPos;
+        return originalPos;
 
     // If the new position is not on the board
     if (board->positionOutOfBounds(newPos.file, newPos.rank))
-        return origPos;
+        return originalPos;
+
+    // If the piece on a square in the path is an enemy, return it's position
+    if (board->at(newPos)->getPiece()->getColor() != board->at(originalPos)->getPiece()->getColor())
+        return newPos;
 
     // If the new position contains a piece return pos
-    if (board->at(newPos)->getPiece()) {
-        return origPos;
-    }
+    if (board->at(newPos)->getPiece())
+        return originalPos;
 
-    finalPositioInPath(newPos, increasedPos, maxPos - 1);
+    return finalPositionInPath(newPos, increasedPos, maxPos - 1);
 }
 
 

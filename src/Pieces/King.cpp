@@ -12,6 +12,7 @@ King::~King() {
 
 }
 
-std::vector<Square> King::possiblePositions() {
-    return Piece::possiblePositions();
+std::vector<Square *> King::possiblePositions() {
+    std::vector<Square *> positions;
+    return positions;
 }

@@ -25,6 +25,7 @@ Game::Game() {
     start();
 }
 
+#include "Player.h"
 
 void Game::start() {
 
@@ -47,6 +48,9 @@ void Game::start() {
 //    inverse           7  (swap foreground and background colours)
 //    bold/bright off  21
 //    underline off    24
+
+
+
     bool b = true;
 
     // Main program loop:
@@ -56,6 +60,10 @@ void Game::start() {
 
         // Display board
         board.display();
+
+        for (auto t : user.getPawn(3)->possiblePositions()) {
+            std::cout << fileToStr(t->getPosition().file) << t->getPosition().rank << std::endl;
+        }
 
         std::string input;
 

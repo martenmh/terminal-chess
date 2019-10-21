@@ -12,8 +12,9 @@ Knight::Knight(int i, Color c, Type t, Player *p, Position pos) : Piece(i, c, t,
 
 }
 
-std::vector<Square> Knight::possiblePositions() {
-    return Piece::possiblePositions();
+std::vector<Square *> Knight::possiblePositions() {
+    std::vector<Square *> positions;
+    return positions;
 }
 
 

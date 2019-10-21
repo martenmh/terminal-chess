@@ -12,6 +12,7 @@ Rook::~Rook() {
 
 }
 
-std::vector<Square> Rook::possiblePositions() {
-    return std::vector<Square>();
+std::vector<Square *> Rook::possiblePositions() {
+    std::vector<Square *> positions;
+    return positions;
 }

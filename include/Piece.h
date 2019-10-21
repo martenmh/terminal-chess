@@ -9,11 +9,10 @@
 #include "Types.h"
 #include "Color.h"
 #include "Position.h"
-#include "Square.h"
+
 #include <vector>
 
-#include "Board.h"
-
+class Square;
 class Board;
 class Player;
 
@@ -38,7 +37,7 @@ public:
      * This can be used to check if the new position given by the player is possible
      * & for the AI algorithm
      */
-    virtual std::vector<Square> possiblePositions();
+    virtual std::vector<Square *> possiblePositions() = 0;
 
     /*
      * This recursive functions checks if it is possible for a piece to move in a certain path without blockades
@@ -50,7 +49,7 @@ public:
      * path and return the final possible position in the path.
      * The maxPos is for pieces that cannot move more than 2 positions at a time.
      */
-    Position finalPositioInPath(Position origPos, Position increasedPos, int maxPos);
+    Position finalPositionInPath(Position originalPos, Position increasedPos, int maxPos);
 
 protected:
     Player *player;

@@ -30,6 +30,8 @@ public:
 
     bool positionOutOfBounds(int rank, int file);
 
+    bool positionOutOfBounds(Position pos);
+
     void move(Position from, Position to);
     std::vector<std::vector<Square *>> squares;
 

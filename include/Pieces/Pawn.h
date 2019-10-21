@@ -7,11 +7,14 @@
 
 #include "Piece.h"
 
+class Board;
+
+
 class Pawn : public Piece {
 public:
     Pawn(int, Color, Type, Player *, Position = {static_cast<HorizontalPosition>(0), 0});
 
-    std::vector<Square> possiblePositions() override;
+    std::vector<Square *> possiblePositions() override;
     ~Pawn();
 };
 

@@ -10,7 +10,7 @@ class Bishop : public Piece {
 public:
     Bishop(int, Color, Type, Player *, Position = {static_cast<HorizontalPosition>(0), 0});
 
-    std::vector<Square> possiblePositions() override;
+    std::vector<Square *> possiblePositions() override;
     ~Bishop();
 };
 

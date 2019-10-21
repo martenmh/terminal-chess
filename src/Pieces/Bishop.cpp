@@ -12,8 +12,9 @@ Bishop::~Bishop() {
 
 }
 
-std::vector<Square> Bishop::possiblePositions() {
-    return Piece::possiblePositions();
+std::vector<Square *> Bishop::possiblePositions() {
+    std::vector<Square *> positions;
+    return positions;
 }
 
 

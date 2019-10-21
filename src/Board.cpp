@@ -163,5 +163,9 @@ bool Board::positionOutOfBounds(int rank, int file) {
     return (file < 1 || file > 8 || rank < 1 || rank > 8);
 }
 
+bool Board::positionOutOfBounds(Position pos) {
+    return (static_cast<int>(pos.file) < 1 || static_cast<int>(pos.file) > 8 || pos.rank < 1 || pos.rank > 8);
+}
+
 
 
