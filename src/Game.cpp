@@ -21,6 +21,8 @@ Game::Game() {
     this->board = Board(&enemy, &user);
     user.setBoard(&board);
     enemy.setBoard(&board);
+    if (user.getColor() == Black)
+        board.flip();
 
     start();
 }
@@ -60,7 +62,7 @@ void Game::start() {
 
         // Display board
         board.display();
-
+        std::cout << (char) user.getPawn(3)->getColor() << std::endl;
         for (auto t : user.getPawn(3)->possiblePositions()) {
             std::cout << fileToStr(t->getPosition().file) << t->getPosition().rank << std::endl;
         }

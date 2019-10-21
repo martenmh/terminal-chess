@@ -14,23 +14,26 @@ Board::Board(Enemy *ai, User *usr) : enemy{ai}, user{usr}, flipped{false} {
 
         std::vector<Square *> row;
         for (unsigned int file = 1; file <= 8; ++file) {
-            Position pos = {static_cast<HorizontalPosition>(file), rank};
+            Position pos = position(file, rank);
 
             Square *square = nullptr;
             // Set user pawns
             if (rank == 2) {
-                square = new Square(pos, this, user->getPawn(file - 1));
+                square = new Square(pos, this,
+                                    user->getColor() == Black ? enemy->getPawn(file - 1) : user->getPawn(file - 1));
                 // Set ai pawns
             } else if (rank == 7) {
-
-                square = new Square(pos, this, enemy->getPawn(file - 1));
+                square = new Square(pos, this,
+                                    user->getColor() == Black ? user->getPawn(file - 1) : enemy->getPawn(file - 1));
                 // Set ai back row
             } else if (rank == 8) {
 
-                square = setBackRow(pos, enemy);
+                square = setBackRow(pos, user->getColor() == Black ? static_cast<Player *>(user)
+                                                                   : static_cast<Player *>(enemy));
                 // Set user back row
             } else if (rank == 1) {
-                square = setBackRow(pos, user);
+                square = setBackRow(pos, user->getColor() == Black ? static_cast<Player *>(enemy)
+                                                                   : static_cast<Player *>(user));
             } else {
                 square = new Square(pos, this, nullptr);
             }
@@ -130,7 +133,8 @@ void Board::display() {
     // Reverse loop so the board starts at 8
     for (int i = 7; i >= 0; --i) {
         auto row = this->squares.at(i);
-        std::cout << i + 1 << " |";
+
+        std::cout << row.at(0)->getPosition().rank << " |";
         for (auto file : row) {
             if (file->getPiece()) {
                 char color = file->getPiece()->getColor() == Color::White ? 'W' : 'B';

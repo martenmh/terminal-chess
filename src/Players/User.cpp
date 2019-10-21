@@ -60,6 +60,7 @@ bool User::set(std::string input) {
     HorizontalPosition b = static_cast<HorizontalPosition>(input[0]);
     HorizontalPosition c = static_cast<HorizontalPosition>(input[2]);
 
+    std::cout << this->getKing()->getColor();
 //    Position pos = {.file = a, .rank = static_cast<unsigned int>(input[1] - '0')};
 //    Position newPos = {.file = a, .rank = static_cast<unsigned int>(input[3] - '0')};
 //
