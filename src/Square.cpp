@@ -8,6 +8,9 @@
 Square::Square(Position pos, Board *b, Piece *p) : pos{pos}, board{b}, piece{p} {
     // Set color of square
     color = (pos.file + pos.rank) % 2 == 0 ? Black : White;
+    // If there is a piece on the square, set the position
+    if (piece)
+        piece->setPosition(pos);
 }
 
 Position Square::getPosition() {

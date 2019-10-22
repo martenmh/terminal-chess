@@ -18,12 +18,13 @@ Pawn::~Pawn() {
 //#include "Position.h"
 std::vector<Square *> Pawn::possiblePositions() {
     std::vector<Square *> positions;
-
     Position curPos = getPosition();
-    auto front = position(0, 1);
-    auto front2 = position(0, 2);
-    auto frontl = position(-1, 1);
-    auto frontr = position(1, 1);
+    int amount = this->getColor() == Black ? -1 : 1;
+    int leftAmount = this->getColor() == Black ? 1 : -1;
+
+    auto front = position(0, amount);
+    auto frontl = position(leftAmount, amount);
+    auto frontr = position(leftAmount / -1, amount);
 
     auto blob = curPos + frontl;
     auto blab = curPos + frontr;
@@ -32,14 +33,20 @@ std::vector<Square *> Pawn::possiblePositions() {
         if (!board->positionOutOfBounds(b)) {
             Square *square = board->at(b);
             // If there is a piece and it is an enemy
-            if (square->getPiece()->getColor() != this->color)
+
+            if (square->getPiece() && square->getPiece()->getColor() != this->color)
                 positions.push_back(square);
         }
     }
 
     // If the pawn has not yet moved, check if it can move 2 squares
     if (!this->hasMoved()) {
-        positions.push_back(board->at(finalPositionInPath(this->pos, position(0, 1), 2)));
+        Position finalPos = finalPositionInPath(this->pos, position(0, amount), 1);
+        positions.push_back(board->at(finalPos));
+        // Normally use the board->positionsBetween function, but because we already know that the only way is one position to the center use this:
+        // If the finalPos is two positions further, otherwise the one in front of the pawn is already in the vector..
+        if ((curPos + position(0, amount)).rank < finalPos.rank)
+            positions.push_back(board->at(curPos + position(0, amount)));
 
         // If there is not a piece on the square & the piece is not out of the board
     } else if (board->at(curPos + front)->getPiece() && board->positionOutOfBounds(curPos + front)) {
@@ -47,6 +54,5 @@ std::vector<Square *> Pawn::possiblePositions() {
     }
 
     return positions;
-
 }
 

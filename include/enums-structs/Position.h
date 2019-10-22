@@ -108,6 +108,10 @@ struct Position {
     inline Position operator+(Position other) {
         return Position{static_cast<HorizontalPosition >(strToFile(file) + strToFile(other.file)), rank + other.rank};
     }
+
+    inline bool operator>(Position other) {
+        return file > other.file && rank > other.rank;
+    }
 };
 
 inline Position position(int file, int rank) {

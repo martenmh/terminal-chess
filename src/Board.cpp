@@ -63,6 +63,7 @@ void Board::flip() {
 }
 
 Square *Board::setBackRow(Position &pos, Player *player) {
+
     // If it is a rook
     unsigned int file = pos.file;
     if (file == 1 || file == 8) {
@@ -169,6 +170,36 @@ bool Board::positionOutOfBounds(int rank, int file) {
 
 bool Board::positionOutOfBounds(Position pos) {
     return (static_cast<int>(pos.file) < 1 || static_cast<int>(pos.file) > 8 || pos.rank < 1 || pos.rank > 8);
+}
+
+std::vector<Position> Board::positionsBetween(Position fp, Position lp) {
+    std::vector<Position> positions;
+    bool fpRankLarger = fp.rank > lp.rank;
+    bool fpFileLarger = fp.file > lp.file;
+
+    // Set the positions 1 more to each other, so every position returned is 'between' the two position.
+    fp.file = static_cast<HorizontalPosition>(fpFileLarger ? fp.file - 1 : fp.file + 1);
+    fp.rank = fpRankLarger ? fp.rank - 1 : fp.rank + 1;
+
+    // If they are on the same rank (horizontal alignment)
+    if (fp.rank == lp.rank)
+        for (int i = fp.file; i != lp.file; fpFileLarger ? i-- : i++)
+            positions.push_back(position(i, fp.rank));
+
+    // If they are on the same file (vertical alignment)
+    if (fp.file == lp.file)
+        for (int i = fp.rank; i != lp.rank; fpRankLarger ? i-- : i++)
+            positions.push_back(position(i, fp.rank));
+
+    // If they are on the same diagonal line (diagonal alignment..)
+    if (fp.file + fp.rank % 2 == lp.file + lp.rank) {
+        // One variable for the rank & one for the file. if the rank is larger than the other than decrease the rank and vice versa.
+        // The same goes for the file
+        for (int i = fp.rank, ii = fp.file;
+             i != lp.rank && ii != lp.file; fpRankLarger ? i-- : i++, fpFileLarger ? ii-- : ii++)
+            positions.push_back(position(i, fp.rank));
+    }
+    return std::vector<Position>();
 }
 
 

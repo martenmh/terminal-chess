@@ -41,7 +41,7 @@ Piece::~Piece() {
 
 void Piece::setPosition(Position p) {
 
-    this->board->squares.at(pos.rank).at(pos.file);
+//    this->board->squares.at(pos.rank).at(pos.file);
     this->pos = p;
 }
 
@@ -63,7 +63,8 @@ Position Piece::finalPositionInPath(Position originalPos, Position increasedPos,
         return originalPos;
 
     // If the piece on a square in the path is an enemy, return it's position
-    if (board->at(newPos)->getPiece()->getColor() != board->at(originalPos)->getPiece()->getColor())
+    if (board->at(newPos)->getPiece() &&
+        board->at(newPos)->getPiece()->getColor() != board->at(originalPos)->getPiece()->getColor())
         return newPos;
 
     // If the new position contains a piece return pos

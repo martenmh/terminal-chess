@@ -35,6 +35,11 @@ public:
     void move(Position from, Position to);
     std::vector<std::vector<Square *>> squares;
 
+    /*
+     * Returns all positions between 2 positions that are either diagonally or straight away from each other
+     */
+    std::vector<Position> positionsBetween(Position fp, Position lp);
+
     void display();
 private:
     bool flipped;
